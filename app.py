@@ -1,5 +1,5 @@
 from flask import Flask
-
+from uuid import UUID
 app = Flask(__name__) # flask constructor Flask(__name__) creates a flask app
 
 # a decorator used to map url to a function 
@@ -29,6 +29,17 @@ def About():
 @app.route('/Contact')
 def Contact():
     return 'Contact Page'
+
+# url converters only accepts the type mentioned
+@app.route('/<user>/<int:userid>')
+def userid(user, userid):
+    return f"User -> {user}, with id -> {userid}"
+
+
+@app.route('/student/<uuid:user_id>')
+def student(user_id):
+    return str(user_id)
+
 
 
 if __name__ =='__main__':
