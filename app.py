@@ -7,12 +7,28 @@ app = Flask(__name__) # flask constructor Flask(__name__) creates a flask app
 def hello(): # def hello(): creates a function that is bound with '/' route and returns "HELLO" when the root page is accessed.
     return 'Hello, Flask'
 
-@app.route('/Welcome/<name>')
+@app.route('/Welcome/<name>') #dynamic routing 
 def Welcome(name):
     formatted_name = name.upper()
-    return 'Hello %s' %formatted_name
+    return f"Hello {formatted_name}"
+
+#multiple dynamic parameters
+@app.route('/cart/<productname>/<quantity>')
+def show_cart(productname, quantity):
+    return f"The items in cart {productname}, quantity {quantity}"
 
 
+@app.route('/Home')
+def Home():
+    return 'Home Page'
+
+@app.route('/About')
+def About():
+    return 'About Page'
+
+@app.route('/Contact')
+def Contact():
+    return 'Contact Page'
 
 
 if __name__ =='__main__':
